@@ -40,7 +40,7 @@ struct TabBarIcon: View {
             .foregroundColor(router.currentPage == assignedPage ? Color.tabBarHighlight : .gray)
             
         }//End Geometryreader
-            
+        
     }// End body
     
 } // End Struct TabBarIconView

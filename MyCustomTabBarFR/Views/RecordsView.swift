@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct RecordsView: View {
+    
     var body: some View {
+        
         VStack /* VStack 2 */ {
             
             Image(systemName: "waveform.badge.plus")
@@ -24,8 +26,9 @@ struct RecordsView: View {
             
         } // End VStack 2
         .padding()
-    }
-}
+    } //END body
+    
+}//END StructView
 
 #Preview {
     RecordsView()

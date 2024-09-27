@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @StateObject var router: Router
+    @StateObject var router: Router //For the navigation tabBar / Pour la navigation de la tabBarre
     
-    @State var showPopUp = false //For the + popup
+    @State var showPopUp = false // For the + popup
     
     var body: some View {
         
@@ -21,7 +21,6 @@ struct ContentView: View {
             
             
             ZStack {
-                
                 
                 switch router.currentPage {
                     
@@ -41,31 +40,22 @@ struct ContentView: View {
                 
                 
                 VStack /* VStack 1 */ {
-
+                    
                     Spacer()
                     
                     ZStack {
+                        
                         if showPopUp {
+                            
                             PlusMenuView(widthAndHeight: geometry.size.width/7)
                                 .offset(y: -geometry.size.height/20)
-                        }
-                    }
+                            
+                        }// End if showPopUp
+                        
+                    } // End ZStack showPopup
                     
                     //MARK: CustomTabBar
                     HStack /*(spacing: -10)*/ /* Hastack 1 */ {
-                        
-                        //                    VStack /* VStack TabBarIcon */ {
-                        //
-                        //                        Image(systemName: "homekit")
-                        //                            .resizable()
-                        //                            .aspectRatio(contentMode: .fit)
-                        //                            .frame(width: geometry.size.width/5, height: geometry.size.height/28)
-                        //                            .padding(5)
-                        //
-                        //                        Text("Home")
-                        //                            .font(.footnote)
-                        //
-                        //                    }// End VStack TabBarIcon
                         
                         
                         TabBarIcon(router: router, assignedPage: .home  , width: geometry.size.width/5, heigt: geometry.size.height/28, systemIconName: "homekit", tabBar: "Home")
@@ -102,8 +92,6 @@ struct ContentView: View {
                         
                         
                         
-                        
-                        
                         TabBarIcon(router: router, assignedPage: .records  , width: geometry.size.width/5, heigt: geometry.size.height/28, systemIconName: "waveform", tabBar: "Records")
                         
                         TabBarIcon(router: router, assignedPage: .user, width: geometry.size.width/5, heigt: geometry.size.height/28, systemIconName: "person.crop.circle", tabBar: "Account")
@@ -125,8 +113,11 @@ struct ContentView: View {
         } // End of GeometryReader
         
     } // End var body: some View
+    
 } // End struct ContentView: View
 
+
+
 #Preview {
-    ContentView(router: Router())
+    ContentView(router: Router()) 
 }

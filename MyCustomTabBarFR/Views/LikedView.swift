@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct LikedView: View {
+    
     var body: some View {
+        
         VStack /* VStack 2 */ {
             
             Image(systemName: "heart.fill")
@@ -24,8 +26,12 @@ struct LikedView: View {
             
         } // End VStack 2
         .padding()
-    }
-}
+    }//End body
+    
+} //End StructView
+
+
+
 
 #Preview {
     LikedView()

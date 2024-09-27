@@ -9,34 +9,34 @@ import SwiftUI
 
 struct PlusMenuView: View {
     
-    let widthAndHeight: CGFloat
+    let widthAndHeight: CGFloat //Give a value to the height of button in + menu
     
     var body: some View {
         
         
         HStack(spacing: 50) {
-          ZStack /* Bouton */ {
-            Circle()
-              .foregroundColor(Color("DarkRed"))
-              .frame(width: widthAndHeight, height: widthAndHeight)
-            Image(systemName: "record.circle")
-              .resizable()
-              .aspectRatio(contentMode: .fit)
-              .padding(15)
-              .frame(width: widthAndHeight, height: widthAndHeight)
-              .foregroundColor(.white)
-          }
-          ZStack /* Bouton dossier */ {
-            Circle()
-              .foregroundColor(Color("DarkRed"))
-              .frame(width: widthAndHeight, height: widthAndHeight)
-            Image(systemName: "folder")
-              .resizable()
-              .aspectRatio(contentMode: .fit)
-              .padding(15)
-              .frame(width: widthAndHeight, height: widthAndHeight)
-              .foregroundColor(.white)
-          }
+            ZStack /* Bouton Share*/ {
+                Circle()
+                    .foregroundColor(Color.xboxGreen )
+                    .frame(width: widthAndHeight, height: widthAndHeight)
+                Image(systemName: "xbox.logo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .padding(15)
+                    .frame(width: widthAndHeight+16, height: widthAndHeight+16)
+                    .foregroundColor(.white)
+            }
+            ZStack /* Bouton dossier */ {
+                Circle()
+                    .foregroundColor(Color.playStationBlue)
+                    .frame(width: widthAndHeight, height: widthAndHeight)
+                Image(systemName: "playstation.logo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .padding(15)
+                    .frame(width: widthAndHeight+16, height: widthAndHeight+16)
+                    .foregroundColor(.white)
+            }
         }
         .transition(.scale)
         
