@@ -21,4 +21,6 @@ enum Page {
     case liked
     case records
     case user
+    case XB
+    case PS
 }

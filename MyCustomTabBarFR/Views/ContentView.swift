@@ -13,6 +13,9 @@ struct ContentView: View {
     
     @State var showPopUp = false // For the + popup
     
+    
+    
+    
     var body: some View {
         
         
@@ -26,18 +29,32 @@ struct ContentView: View {
                     
                 case .home:
                     HomeView()
+                        .transition(.identity)
                     
                 case .liked:
                     LikedView()
+                        .transition(.identity)
                     
                 case .records:
                     RecordsView()
-                    
+                        .transition(.identity)
                 case .user:
                     UserView()
+                        .transition(.identity)
+                    
+                    
+                case .XB:
+                    XConsolView()
+                        .transition(.opacity)
+                        
+                    
+                case .PS:
+                    PConsolView()
+                        .transition(.opacity)
+                        
                     
                 } //End Switch router.currentPage
-                
+//                    .animation(.easeInOut(duration: 0.5), value: router.currentPage)
                 
                 VStack /* VStack 1 */ {
                     
@@ -47,8 +64,13 @@ struct ContentView: View {
                         
                         if showPopUp {
                             
-                            PlusMenuView(widthAndHeight: geometry.size.width/7)
-                                .offset(y: -geometry.size.height/20)
+                            PlusMenuView(router: router, closeMenu: {
+                                withAnimation(.easeInOut) {
+                                    showPopUp = false
+                                }
+                            },
+                            widthAndHeight: geometry.size.width/7)
+                            .offset(y: -geometry.size.height/20)
                             
                         }// End if showPopUp
                         
@@ -59,9 +81,10 @@ struct ContentView: View {
                         
                         
                         TabBarIcon(router: router, assignedPage: .home  , width: geometry.size.width/5, heigt: geometry.size.height/28, systemIconName: "homekit", tabBar: "Home")
+//
                         
                         TabBarIcon(router: router, assignedPage: .liked  , width: geometry.size.width/5, heigt: geometry.size.height/28, systemIconName: "heart", tabBar: "Liked")
-                        
+//
                         
                         
                         //MARK: + Button
@@ -93,8 +116,10 @@ struct ContentView: View {
                         
                         
                         TabBarIcon(router: router, assignedPage: .records  , width: geometry.size.width/5, heigt: geometry.size.height/28, systemIconName: "waveform", tabBar: "Records")
+                            
                         
                         TabBarIcon(router: router, assignedPage: .user, width: geometry.size.width/5, heigt: geometry.size.height/28, systemIconName: "person.crop.circle", tabBar: "Account")
+                            
                         
                         
                         
@@ -109,6 +134,15 @@ struct ContentView: View {
                 } // End Vstack 1
                 .edgesIgnoringSafeArea(.all)
             } //END ZStack SwitchContent
+            .animation(.easeIn(duration: 0.7), value: router.currentPage)
+            .onChange(of: router.currentPage) { oldValue, newValue in
+                        // Ferme le PlusMenu si la nouvelle page n'est pas XB ou PS
+                        if newValue != .XB && newValue != .PS {
+                            withAnimation {
+                                showPopUp = false
+                            }
+                        }
+                    }
             
         } // End of GeometryReader
         
@@ -119,5 +153,5 @@ struct ContentView: View {
 
 
 #Preview {
-    ContentView(router: Router()) 
+    ContentView(router: Router())
 }

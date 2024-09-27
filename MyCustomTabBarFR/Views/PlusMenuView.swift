@@ -9,13 +9,17 @@ import SwiftUI
 
 struct PlusMenuView: View {
     
+    @ObservedObject var router: Router
+    var closeMenu: () -> Void
+    
     let widthAndHeight: CGFloat //Give a value to the height of button in + menu
+    
     
     var body: some View {
         
         
         HStack(spacing: 50) {
-            ZStack /* Bouton Share*/ {
+            ZStack /* Bouton XB*/ {
                 Circle()
                     .foregroundColor(Color.xboxGreen )
                     .frame(width: widthAndHeight, height: widthAndHeight)
@@ -26,7 +30,13 @@ struct PlusMenuView: View {
                     .frame(width: widthAndHeight+16, height: widthAndHeight+16)
                     .foregroundColor(.white)
             }
-            ZStack /* Bouton dossier */ {
+            .onTapGesture {
+                router.currentPage = .XB
+                closeMenu()
+            }
+            
+            
+            ZStack /* Bouton PS */ {
                 Circle()
                     .foregroundColor(Color.playStationBlue)
                     .frame(width: widthAndHeight, height: widthAndHeight)
@@ -37,10 +47,14 @@ struct PlusMenuView: View {
                     .frame(width: widthAndHeight+16, height: widthAndHeight+16)
                     .foregroundColor(.white)
             }
-        }
+            .onTapGesture {
+                router.currentPage = .PS
+                closeMenu()
+            }
+            
+        }// END HStack
         .transition(.scale)
-        
-        
-        
+         
     } // End body
+    
 }// End structView
