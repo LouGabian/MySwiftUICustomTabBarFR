@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct MyCustomTabBarFRApp: App {
+    
+    @StateObject var router = Router()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(router: Router())
         }
     }
 }
